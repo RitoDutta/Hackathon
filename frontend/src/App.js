@@ -23,29 +23,29 @@ import CampaignsManage from "./pages/Admin/CampaignsManage";
 import DoctorDashboard from "./pages/Doctor/DoctorDashboard";
 import AdminDashboard from "./pages/Admin/AdminDashboard";
 
+
 function App() {
   return (
     <Router>
       <div className="app-container">
-        <Header />
-
         <Routes>
-          <Route path="/" element={<HomePage />} />
-          <Route path="/login" element={<LoginPage />} />
-          <Route path="/signup" element={<SignupPage />} />
-          <Route path="/find-doctors" element={<FindDoctors />} />
-          <Route path="/video-consult" element={<VideoConsult />} />
-          <Route path="/campaigns" element={<Campaigns />} />
-          <Route path="/ai-chatbot" element={<ChatBot />} />
-          <Route path="/wellness-leaderboard" element={<WellnessLeaderboard />} />
-          <Route path="/health-report" element={<HealthReport />} />
-          <Route path="/profile/student" element={<Profile />} />
+          {/* Public/User Pages with Header/Footer */}
+          <Route path="/" element={<><Header /><HomePage /><Footer /></>} />
+          <Route path="/login" element={<><Header /><LoginPage /><Footer /></>} />
+          <Route path="/signup" element={<><Header /><SignupPage /><Footer /></>} />
+          <Route path="/find-doctors" element={<><Header /><FindDoctors /><Footer /></>} />
+          <Route path="/video-consult" element={<><Header /><VideoConsult /><Footer /></>} />
+          <Route path="/campaigns" element={<><Header /><Campaigns /><Footer /></>} />
+          <Route path="/ai-chatbot" element={<><Header /><ChatBot /><Footer /></>} />
+          <Route path="/wellness-leaderboard" element={<><Header /><WellnessLeaderboard /><Footer /></>} />
+          <Route path="/health-report" element={<><Header /><HealthReport /><Footer /></>} />
+          <Route path="/profile/student" element={<><Header /><Profile /><Footer /></>} />
 
-          {/* Doctor Dashboard */}
+          {/* Doctor Dashboard (no Header/Footer) */}
           <Route path="/doctor" element={<DoctorDashboard />} />
 
-          {/* Admin Layout with Nested Routes */}
-          <Route path="/admin" element={<AdminLayout />}>
+          {/* Admin Layout with Nested Routes (no Header/Footer) */}
+          {/* <Route path="/admin" element={<AdminLayout />}> */}
             <Route index element={<AdminDashboard />} />
             <Route path="reports" element={<ReportsList />} />
             <Route path="reports/:id" element={<ReportDetail />} />
@@ -53,13 +53,11 @@ function App() {
             <Route path="reports/map" element={<ReportsMap />} />
             <Route path="appointments" element={<AppointmentsAll />} />
             <Route path="campaigns" element={<CampaignsManage />} />
-          </Route>
+          {/* </Route> */}
 
           {/* Catch-All Redirect */}
           <Route path="*" element={<Navigate to="/" replace />} />
         </Routes>
-
-        <Footer />
       </div>
     </Router>
   );
